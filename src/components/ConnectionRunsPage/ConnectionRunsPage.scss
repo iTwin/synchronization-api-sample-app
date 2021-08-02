@@ -1,0 +1,32 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
+
+@import '@itwin/itwinui-css/scss/index.scss';
+
+.connection-runs-page {
+  .full-cell-button {
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .iui-table {
+    > div:first-child {
+      // Table header
+      overflow-x: hidden;
+      overflow-y: scroll;
+      overflow: overlay;
+    }
+    .iui-table-body {
+      max-height: 350px;
+    }
+  }
+
+  .table-toolbar {
+    .iui-button-group {
+      margin-bottom: $iui-m;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
+
+.tasks-modal {
+  .iui-modal-dialog {
+    min-width: 50%;
+    max-width: 100%;
+    width: 900px;
+  }
+
+  .iui-table {
+    .iui-text-block {
+      margin-bottom: 0;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
