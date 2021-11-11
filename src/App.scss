@@ -34,3 +34,8 @@ body {
   margin-right: $iui-sm;
   line-height: 0;
 }
+.auth-wrapper-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
