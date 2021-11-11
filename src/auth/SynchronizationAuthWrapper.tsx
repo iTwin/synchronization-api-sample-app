@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import { navigate, RouteComponentProps } from '@reach/router';
+import { Button } from '@itwin/itwinui-react';
+import { RouteComponentProps } from '@reach/router';
 import { User } from 'oidc-client';
 import { useEffect, useState } from 'react';
-import { LoadingOverlay } from '../components/LoadingOverlay/LoadingOverlay';
 import { definitions } from '../dto/synchronization';
 import { apiDomain } from '../setup';
 
@@ -24,6 +24,7 @@ export const SynchronizationAuthWrapper = (
 ) => {
   const { user, children } = props;
   const [isAuthorized, setIsAuthorized] = useState(false);
+  const [authorizationUrl, setAuthorizationUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const authorizeAsync = async () => {
@@ -40,7 +41,7 @@ export const SynchronizationAuthWrapper = (
       if (!authInfo.authorizationInformation.isUserAuthorized) {
         const authRedirectUrl =
           authInfo.authorizationInformation._links.authorizationUrl.href;
-        navigate(authRedirectUrl);
+        setAuthorizationUrl(authRedirectUrl);
       } else {
         setIsAuthorized(true);
       }
@@ -53,8 +54,20 @@ export const SynchronizationAuthWrapper = (
     <>
       {isAuthorized ? (
         children
+      ) : authorizationUrl ? (
+        <div className="auth-wrapper-container">
+          <Button
+            onClick={() => {
+              window.open(authorizationUrl);
+              setIsAuthorized(true);
+              setAuthorizationUrl(null);
+            }}
+          >
+            Authenticate
+          </Button>
+        </div>
       ) : (
-        <LoadingOverlay text="Authorizing for synchronization" />
+        <></>
       )}
     </>
   );
