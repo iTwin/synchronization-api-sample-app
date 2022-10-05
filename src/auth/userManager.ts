@@ -4,11 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { UserManager } from 'oidc-client';
-import { client_id } from '../env';
-import { authority } from '../setup';
+import { client_id, authority } from '../env';
 
 const scopes =
-  'synchronization:read synchronization:modify storage:read projects:read';
+  'synchronization:read synchronization:modify storage:read storage:modify projects:read imodels:read imodels:modify';
 
 /**
  * Authentication uses OAuth2 flow assisted by `oidc-client` package.
@@ -19,7 +18,7 @@ const scopes =
  * The `scopes` and `client_id` are copied from your application at iTwin Developer Platform (found under My Apps).
  * `client_id` must be set in .env file at project root.
  *
- * See `App.tsx`, `auth/Login.tsx`, `auth/AuthContext.tsx`, `auth/CompleteSignIn.tsx`
+ * See `app.tsx`, `auth/login.tsx`, `auth/authContext.tsx`, `auth/completeSignIn.tsx`
  * for authentication flow implementation details.
  */
 export const createUserManager = () => {

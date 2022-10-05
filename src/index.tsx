@@ -5,17 +5,14 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import { AuthContextProvider } from './auth/AuthContext';
-import { ThemeContextProvider } from './contexts/ThemeContext';
+import App from './app';
+import { AuthContextProvider } from './auth/authContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeContextProvider>
-      <AuthContextProvider>
-        <App />
-      </AuthContextProvider>
-    </ThemeContextProvider>
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

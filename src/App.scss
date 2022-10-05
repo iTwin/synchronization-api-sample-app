@@ -19,23 +19,3 @@ body {
   margin: 0;
   padding: 0;
 }
-
-.tile-card {
-  box-shadow: $iui-elevation-2;
-  @include themed() {
-    background-color: t(iui-color-background-1);
-  }
-  padding: $iui-m;
-}
-
-.file-icon {
-  width: $iui-icons-default;
-  height: $iui-icons-default;
-  margin-right: $iui-sm;
-  line-height: 0;
-}
-.auth-wrapper-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}

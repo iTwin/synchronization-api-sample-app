@@ -1,0 +1,46 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
+
+@import '../../../node_modules/@itwin/itwinui-css/scss/index.scss';
+
+.icon-default {
+  @include themed {
+    fill: t(iui-icons-color);
+  }
+}
+
+.icon-primary {
+  @include themed {
+    fill: t(iui-icons-color-primary);
+  }
+}
+
+.icon-positive {
+  @include themed {
+    fill: t(iui-icons-color-positive);
+  }
+}
+
+.icon-negative {
+  @include themed {
+    fill: t(iui-icons-color-negative);
+  }
+}
+
+.icon-warning {
+  @include themed {
+    fill: t(iui-icons-color-warning);
+  }
+}
+
+.icon-size-default {
+  width: $iui-icons-default;
+  height: $iui-icons-default;
+}
+
+.icon-size-large {
+  width: $iui-icons-large;
+  height: $iui-icons-large;
+}
