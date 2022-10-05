@@ -1,0 +1,36 @@
+# Synchronization Storage API Sample CI build
+#
+# This pipeline installs, builds and
+# is used to validate all PRs and updates to main.
+
+trigger:
+  - main
+
+pr:
+  drafts: false
+  branches:
+    include:
+      - main
+
+jobs:
+  - job: Synchronization_Storage_API_Sample_Build
+    displayName: Synchronization Storage API Sample CI build
+    pool:
+      vmImage: ubuntu-latest
+    workspace:
+      clean: all
+    steps:
+      - checkout: self
+      - task: NodeTool@0
+        displayName: Use Node 14
+        inputs:
+          versionSpec: 14.17.4
+          checkLatest: true
+
+      - script: npm install
+        displayName: 'npm install'
+        workingDirectory: ''
+
+      - script: npm build
+        displayName: 'npm build'
+        workingDirectory: ''
