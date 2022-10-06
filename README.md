@@ -1,30 +1,42 @@
-# Sample synchronization portal application
+# Synchronization Storage API Sample
 
 This is a code sample application that demonstrates usage of [Synchronization](https://developer.bentley.com/api-groups/synchronization/) API at [Bentley iTwin developer platform](https://developer.bentley.com).
 
-For better understanding of Synchronization and Storage APIs, please refer to this [tutorial](https://developer.bentley.com/tutorials/synchronization-tutorial/).
+For better understanding of Synchronization and Storage APIs, please refer to this [tutorial](https://developer.bentley.com/tutorials/synchronization-storage-tutorial/).
+
+## Prerequisites
+
+- [Git](https://git-scm.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Node](https://nodejs.org/en/): an installation of the latest security patch of Node 16. The Node installation also includes the **npm** package manager.
+- [Visual Studio Code](https://code.visualstudio.com/): an optional dependency, but the repository structure is optimized for its use.
 
 ## Setup
 
 Please make sure to follow these steps for running this code sample application:
 
-1.  Clone this repository: https://github.com/iTwin/synchronization-api-sample-app.git.
-1.  Make sure npm and yarn are installed on your machine.
-1.  Register a new SPA at [My Apps](https://developer.bentley.com/my-apps/) with the following scopes: `synchronization:read synchronization:modify storage:read projects:read`. For redirect uris, provide `http://localhost:3000/signin-oidc`.
-1.  Create an [empty iModel](https://developer.bentley.com/my-imodels/). Note down context and iModel IDs.
-1.  Upload some .dgn files using [Storage API](https://developer.bentley.com/api-groups/data-management/apis/storage/).
-1.  `.env` file is required for setting up enviromental variables used by application. Create `.env` file at application root and fill out `REACT_APP_CONTEXT_ID`, `REACT_APP_IMODEL_ID` and `REACT_APP_CLIENT_ID` enviromental variables. `REACT_APP_CLIENT_ID` is your [registered application's](https://developer.bentley.com/my-apps/) Client ID. The file contents should be like this:
+1.  Clone this repository.
+1.  Make sure npm or yarn is installed on your machine.
+1.  Register a new SPA at [My Apps](https://developer.bentley.com/my-apps/) with:
 
-        REACT_APP_CONTEXT_ID=<Your Context ID>
-        REACT_APP_IMODEL_ID=<Your iModel ID>
-        REACT_APP_CLIENT_ID=<Your client ID>
+    - Scopes: `synchronization:read`, `synchronization:modify`, `storage:read projects:read`.
+    - Redirect Urls: `http://localhost:3000/signin-oidc`.
+
+1.  Create an [empty iModel](https://developer.bentley.com/my-imodels/). Note down context and iModel IDs.
+1.  `.env` file is required for setting up enviromental variables used by application. Create `.env` file at application root and fill out required environmental variables.
+
+    ```
+    REACT_APP_CONTEXT_ID=<context ID> // `REACT_APP_PROJECT_ID` is your created Context(Project) ID.
+    REACT_APP_IMODEL_ID=<iModel ID>   // `REACT_APP_IMODEL_ID` is your created iModel's ID.
+    REACT_APP_CLIENT_ID=<client ID>   // `REACT_APP_CLIENT_ID` is your [registered application's](https://developer.bentley.com/my-apps/) Client ID.
+    ```
 
 1.  Run `yarn` in command line to install required packages.
-1.  Run `yarn start` to run the application. Navigate to localhost:3000 in your browser.
+1.  Run `yarn run start` to run the application. Navigate to localhost:3000 in your browser.
 
 ## Code overview
 
-Code is documented to help user understand how data is being used from each API call, how authorization workflow is implemented, what is the purpose of each page and some other minor details.
+Code is documented to help user understand how data is being used from each API call, how authorization workflow is implemented, what is the purpose of each component and some other minor details.
 
 We encourage user to understand how OAuth2 authorization workflow is implemented. In this code sample, authentication flow implementation details can be found at `src/auth` files.
 
@@ -32,17 +44,20 @@ We encourage user to understand how OAuth2 authorization workflow is implemented
 
 ## Application overview
 
-### Home page
+### Starting state
 
-This page displays all connections for the provided iModel in `.env` file. Clicking on a connection name in a table cell will navigate to that specific connection's runs page. By clicking "New connection", user will be navigated to another page for creating connections.
-![Home Page](img/home.png)
+If the iModel from `.env` file is empty, the page displays a gray drop area. When the user drags and drops some file(s), the area will change depending on the file type: either turn red and show a message with allowed file types or turn green and notify that the files are being uploaded to storage.
+![Starting state](img/Starting_state.png)
 
-### Create connection page
+### Synchronization in progress state
 
-A page that is used for creating new connections. Upon loading, this page fetches files from storage's root folder, while storage is referenced by the provided project ID in `.env` file. User can then select files, provide required information and finish creating a connection. If the file list is empty, user will have to upload some .dgn files using [Storage API](https://developer.bentley.com/api-groups/data-management/apis/storage/).
-![Create connection page](img/create_connection.png)
+When files are uploaded to storage, the synchronization process begins. A table containing information about each file is displayed with constant updates until the synchronization process is finished.
+![Synchronization in progress state](img/Sync_in_progress_state.png)
 
-### Connection runs page
+During the synchronization process the user is not allowed to drop files in the area. Dragging a file over the drop area will show a warning. If a file is dropped despite the warning, nothing will happen.
+![Synchronization warning state](img/Sync_warning_state.png)
 
-A page where connection's synchronization progress can be monitored. The table displays current and previous connection synchronization runs. Each run can be further inspected by clicking "Details" button - this will display a table modal with more specific tasks that were executed.
-![Runs](img/runs.png)
+### Synchronization done state
+
+When every file is synchronized and the process is fully finished, the page will display the table and will allow to drop more files in the drop area (the area overlay will only be shown when a file is dragged over it).
+![Synchronization done state](img/Sync_done_state.png)

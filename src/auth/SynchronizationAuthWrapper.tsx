@@ -3,16 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import { Button } from '@itwin/itwinui-react';
-import { RouteComponentProps } from '@reach/router';
+import { navigate, RouteComponentProps } from '@reach/router';
 import { User } from 'oidc-client';
 import { useEffect, useState } from 'react';
-import { definitions } from '../dto/synchronization';
-import { apiDomain } from '../setup';
-
-type AuthorizationInformationDTO = {
-  authorizationInformation: definitions['AuthorizationInformation'];
-};
+import { LoadingOverlay } from '../components/loadingOverlay/loadingOverlay';
+import { AuthorizationService } from '../clients/synchronizationClient';
 
 export interface SynchronizationAuthWrapperProps {
   user: User;
@@ -23,25 +18,20 @@ export const SynchronizationAuthWrapper = (
   props: RouteComponentProps & SynchronizationAuthWrapperProps
 ) => {
   const { user, children } = props;
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const [authorizationUrl, setAuthorizationUrl] = useState<string | null>(null);
+  const [isAuthorized, setIsAuthorized] = useState(true);
 
   useEffect(() => {
     const authorizeAsync = async () => {
-      const requestHeaders = {
-        Authorization: `Bearer ${user.access_token}`,
-      };
+      const authInfo = await AuthorizationService.getAuthorizationInformation(
+        'http://localhost:3000',
+        `Bearer ${user.access_token}`
+      );
 
-      const authInfo: AuthorizationInformationDTO = await (
-        await fetch(
-          `${apiDomain}/synchronization/imodels/connections/authorizationInformation?redirectUrl=${window.location.href}`,
-          { headers: requestHeaders }
-        )
-      ).json();
-      if (!authInfo.authorizationInformation.isUserAuthorized) {
+      if (!authInfo.authorizationInformation?.isUserAuthorized) {
         const authRedirectUrl =
-          authInfo.authorizationInformation._links.authorizationUrl.href;
-        setAuthorizationUrl(authRedirectUrl);
+          authInfo.authorizationInformation?._links?.authorizationUrl?.href ??
+          '';
+        navigate(authRedirectUrl);
       } else {
         setIsAuthorized(true);
       }
@@ -54,20 +44,8 @@ export const SynchronizationAuthWrapper = (
     <>
       {isAuthorized ? (
         children
-      ) : authorizationUrl ? (
-        <div className="auth-wrapper-container">
-          <Button
-            onClick={() => {
-              window.open(authorizationUrl);
-              setIsAuthorized(true);
-              setAuthorizationUrl(null);
-            }}
-          >
-            Authenticate
-          </Button>
-        </div>
       ) : (
-        <></>
+        <LoadingOverlay text="Authorizing for synchronization" />
       )}
     </>
   );

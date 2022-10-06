@@ -5,18 +5,11 @@
 
 import { useEffect } from 'react';
 import { User } from 'oidc-client';
-import { useAuthContext } from './AuthContext';
+import { useAuthContext } from './authContext';
 import { navigate, RouteComponentProps } from '@reach/router';
-import { LoadingOverlay } from '../components/LoadingOverlay/LoadingOverlay';
+import { LoadingOverlay } from '../components/loadingOverlay/loadingOverlay';
 
-/**
- * This page is a final post-login step that is navigated to after
- * we are finished signing in at Bentley's authorization endpoint.
- *
- * This page simply initializes our global `user` object and navigates to the last pre-login
- * location that was saved in `auth/Login.tsx` page.
- */
-export const CompleteSignIn = (_props: RouteComponentProps<{}>) => {
+export const CompleteSignIn = (props: RouteComponentProps<{}>) => {
   const { userManager, setUser } = useAuthContext();
   useEffect(() => {
     userManager?.signinRedirectCallback().then((user: User) => {

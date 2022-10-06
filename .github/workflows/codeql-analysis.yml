@@ -1,16 +1,16 @@
 # Synchronization Storage API Sample CodeQL Build
 
-name: "CodeQL"
+name: 'CodeQL'
 
 on:
   push:
     branches:
       - main
-      - "release/**"
+      - 'release/**'
   pull_request:
     branches:
       - main
-      - "release/**"
+      - 'release/**'
 
 jobs:
   analyze:
@@ -24,7 +24,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ["javascript", "typescript"]
+        language: ['javascript', 'typescript']
 
     steps:
       - name: Checkout repository

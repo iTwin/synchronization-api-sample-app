@@ -5,11 +5,12 @@
 
 import { User, UserManager } from 'oidc-client';
 import React, { useContext, useEffect, useState } from 'react';
-import { LoadingOverlay } from '../components/LoadingOverlay/LoadingOverlay';
+import { LoadingOverlay } from '../components/loadingOverlay/loadingOverlay';
 import { createUserManager } from './userManager';
 
 export interface IAuthContext {
   user: User | null;
+  authorization: string;
   setUser: (user: User) => void;
   userManager: UserManager | null;
 }
@@ -27,6 +28,7 @@ export const AuthContextProvider = (props: { children: React.ReactNode }) => {
   const { children } = props;
   const [isLoaded, setIsLoaded] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const [authorization, setAuthorization] = useState('');
   const [userManager, setUserManager] = useState<UserManager | null>(null);
 
   useEffect(() => {
@@ -41,8 +43,12 @@ export const AuthContextProvider = (props: { children: React.ReactNode }) => {
     initializeUser();
   }, []);
 
+  useEffect(() => {
+    setAuthorization(`Bearer ${user?.access_token}`);
+  }, [user]);
+
   return isLoaded ? (
-    <AuthContext.Provider value={{ user, setUser, userManager }}>
+    <AuthContext.Provider value={{ user, setUser, userManager, authorization }}>
       {children}
     </AuthContext.Provider>
   ) : (

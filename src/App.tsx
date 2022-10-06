@@ -3,16 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import { useAuthContext } from './auth/AuthContext';
+import { useAuthContext } from './auth/authContext';
 import { LocationProvider, Router } from '@reach/router';
-import { ConnectionsPage } from './components/ConnectionsPage/ConnectionsPage';
-import { NewConnectionPage } from './components/NewConnectionPage/NewConnectionPage';
-import { Layout } from './components/Layout/Layout';
-import './App.scss';
-import { CompleteSignIn } from './auth/CompleteSignIn';
-import { Login } from './auth/Login';
-import { ConnectionRunsPage } from './components/ConnectionRunsPage/ConnectionRunsPage';
-import { SynchronizationAuthWrapper } from './auth/SynchronizationAuthWrapper';
+import { Layout } from './components/layout/layout';
+import './app.scss';
+import { CompleteSignIn } from './auth/completeSignIn';
+import { Login } from './auth/login';
+import { SynchronizationAuthWrapper } from './auth/synchronizationAuthWrapper';
+import { SyncView } from './components/syncView/syncView';
 
 /**
  * Application entry point, uses `@reach/router` package for managing navigation.
@@ -32,9 +30,7 @@ function App() {
             </>
           ) : (
             <SynchronizationAuthWrapper path="/" user={user}>
-              <ConnectionsPage path="/" />
-              <NewConnectionPage path="newConnection" />
-              <ConnectionRunsPage path=":connectionId" />
+              <SyncView path="/" />
             </SynchronizationAuthWrapper>
           )}
         </Router>
