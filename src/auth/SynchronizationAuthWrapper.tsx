@@ -6,7 +6,7 @@
 import { navigate, RouteComponentProps } from '@reach/router';
 import { User } from 'oidc-client';
 import { useEffect, useState } from 'react';
-import { LoadingOverlay } from '../components/loadingOverlay/loadingOverlay';
+import { LoadingOverlay } from '../components/LoadingOverlay/LoadingOverlay';
 import { AuthorizationService } from '../clients/synchronizationClient';
 
 export interface SynchronizationAuthWrapperProps {

@@ -5,8 +5,8 @@
 
 import { RouteComponentProps } from '@reach/router';
 import { useEffect } from 'react';
-import { LoadingOverlay } from '../components/loadingOverlay/loadingOverlay';
-import { useAuthContext } from './authContext';
+import { LoadingOverlay } from '../components/LoadingOverlay/LoadingOverlay';
+import { useAuthContext } from './AuthContext';
 
 export const Login = (props: RouteComponentProps<{}>) => {
   const { user, userManager } = useAuthContext();

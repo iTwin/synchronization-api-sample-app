@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import { useAuthContext } from '../auth/authContext';
+import { useAuthContext } from '../auth/AuthContext';
 import {
   files,
   FilesService,
