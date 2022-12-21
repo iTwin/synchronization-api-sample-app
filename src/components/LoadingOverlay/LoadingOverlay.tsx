@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { Body, ProgressRadial } from '@itwin/itwinui-react';
-import './loadingOverlay.scss';
+import './LoadingOverlay.scss';
 
 interface LoadingOverlayProps {
   text: string;

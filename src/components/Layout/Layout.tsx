@@ -6,7 +6,7 @@
 import React from 'react';
 import { Footer, Header, HeaderLogo } from '@itwin/itwinui-react';
 import { SvgImodelHollow } from '@itwin/itwinui-icons-react';
-import './layout.scss';
+import './Layout.scss';
 
 export interface LayoutProps {
   children: React.ReactNode;
