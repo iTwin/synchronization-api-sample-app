@@ -19,7 +19,7 @@ Please make sure to follow these steps for running this code sample application:
 1.  Make sure npm or yarn is installed on your machine.
 1.  Register a new SPA at [My Apps](https://developer.bentley.com/my-apps/) with:
 
-    - Scopes: `synchronization:read`, `synchronization:modify`, `storage:read projects:read`.
+    - Scopes: `synchronization:read`, `synchronization:modify`, `storage:read`, `storage:modify`, `projects:read`, `imodels:read`, `imodels:modify`.
     - Redirect Urls: `http://localhost:3000/signin-oidc`.
 
 1.  Create an [empty iModel](https://developer.bentley.com/my-imodels/). Note down context and iModel IDs.
