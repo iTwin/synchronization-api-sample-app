@@ -26,10 +26,12 @@ Please make sure to follow these steps for running this code sample application:
 1.  `.env` file is required for setting up enviromental variables used by application. Create `.env` file at application root and fill out required environmental variables.
 
     ```
-    REACT_APP_CONTEXT_ID=<context ID> // `REACT_APP_PROJECT_ID` is your created Context(Project) ID.
-    REACT_APP_IMODEL_ID=<iModel ID>   // `REACT_APP_IMODEL_ID` is your created iModel's ID.
+    REACT_APP_ITWIN_ID=<context ID>   // `REACT_APP_ITWIN_ID` is your created iTwin ID.
+    REACT_APP_IMODEL_ID=<iModel ID>   // `REACT_APP_IMODEL_ID` is your created iModel ID.
     REACT_APP_CLIENT_ID=<client ID>   // `REACT_APP_CLIENT_ID` is your [registered application's](https://developer.bentley.com/my-apps/) Client ID.
     ```
+
+If you already have a Project pass Project ID in place of the iTwin ID, please refer to this guide:: https://developer.bentley.com/apis/itwins/#faq
 
 1.  Run `yarn` in command line to install required packages.
 1.  Run `yarn run start` to run the application. Navigate to localhost:3000 in your browser.

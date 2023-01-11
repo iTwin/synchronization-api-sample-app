@@ -10,7 +10,7 @@ import {
   file_typed,
   FoldersService,
 } from '../clients/storageClient';
-import { contextId } from '../env';
+import { iTwinId } from '../env';
 const accreditationFilesFolderName = ' AccreditationAppFiles';
 
 export const useStorageAPI = (): [
@@ -21,7 +21,7 @@ export const useStorageAPI = (): [
   const getAccreditationFolderId = async () => {
     const itemsResponse =
       await FilesService.getTopLevelFoldersAndFilesByProject(
-        contextId,
+        iTwinId,
         authorization
       );
 
