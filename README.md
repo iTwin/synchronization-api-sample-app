@@ -36,8 +36,6 @@ Please make sure to follow these steps for running this code sample application:
 1.  Run `yarn` in command line to install required packages.
 1.  Run `yarn run start` to run the application. Navigate to localhost:3000 in your browser.
 
-If you already have a Project pass Project ID in place of the iTwin ID, please refer to this [FAQ](https://developer.bentley.com/apis/itwins/#faq)
-
 ## Code overview
 
 Code is documented to help user understand how data is being used from each API call, how authorization workflow is implemented, what is the purpose of each component and some other minor details.
