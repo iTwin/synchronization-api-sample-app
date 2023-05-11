@@ -60,7 +60,9 @@ export const useSynchronizationAPI = (): [
         'return=representation'
       );
     return runsResponse.runs != null
-      ? runsResponse.runs[runsResponse.runs.length - 1]
+      ? runsResponse.runs.sort((run1: any, run2: any) =>
+          run2.startDateTime.localeCompare(run1.startDateTime)
+        )[0]
       : null;
   };
 
