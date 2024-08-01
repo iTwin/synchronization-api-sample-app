@@ -12,7 +12,7 @@
     "@types/classnames": "^2.3.1",
     "@types/reach__router": "1.3.15",
     "classnames": "^2.5.1",
-    "node-sass": "9.0.0",
+    "sass": "1.77.8",
     "oidc-client": "^1.11.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.0.0",
+    "@types/node": "^22.0.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-table": "^7.7.20",
