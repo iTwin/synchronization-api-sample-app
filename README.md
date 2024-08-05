@@ -8,7 +8,7 @@ For better understanding of Synchronization and Storage APIs, please refer to th
 
 - [Git](https://git-scm.com/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Node](https://nodejs.org/en/): an installation of the latest security patch of Node 16. The Node installation also includes the **npm** package manager.
+- [Node](https://nodejs.org/en/): an installation of the latest security patch of Node 22. The Node installation also includes the **npm** package manager.
 - [Visual Studio Code](https://code.visualstudio.com/): an optional dependency, but the repository structure is optimized for its use.
 
 ## Setup
@@ -19,7 +19,7 @@ Please make sure to follow these steps for running this code sample application:
 1.  Make sure npm or yarn is installed on your machine.
 1.  Register a new SPA at [My Apps](https://developer.bentley.com/my-apps/) with:
 
-    - Scopes: `synchronization:read`, `synchronization:modify`, `storage:read`, `storage:modify`, `projects:read`, `imodels:read`, `imodels:modify`.
+    - Scopes: `itwin-platform`.
     - Redirect Urls: `http://localhost:3000/signin-oidc`.
 
 1.  Create an [empty iModel](https://developer.bentley.com/my-imodels/). Note down context and iModel IDs.

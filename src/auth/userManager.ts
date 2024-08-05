@@ -7,7 +7,7 @@ import { UserManager } from 'oidc-client';
 import { client_id, authority } from '../env';
 
 const scopes =
-  'synchronization:read synchronization:modify storage:read storage:modify projects:read imodels:read imodels:modify';
+  'itwin-platform';
 
 /**
  * Authentication uses OAuth2 flow assisted by `oidc-client` package.
